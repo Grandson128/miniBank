@@ -1,22 +1,26 @@
 package com.example.minibank.controller;
 
 import com.example.minibank.model.User;
+import com.example.minibank.service.BankService;
 import com.example.minibank.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
+    private final BankService bankService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, BankService bankService) {
         this.userService = userService;
+        this.bankService = bankService;
     }
 
     // Get all active users
@@ -66,4 +70,25 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // Endpoint for depositing money
+    @PatchMapping("/{id}/deposit")
+    public String deposit(@PathVariable Long id, @RequestParam double amount) {
+        Optional<User> user = bankService.deposit(id, amount);
+        if (user.isPresent()) {
+            return "Deposited " + amount + " to user  " + id + ":" + user.get().getName() + ". New balance: " + user.get().getBalance();
+        }
+        return "User not found!";
+    }
+
+    // Endpoint for withdrawing money
+    @PatchMapping("/{id}/withdraw")
+    public String withdraw(@PathVariable Long id, @RequestParam double amount) {
+        Optional<User> user = bankService.withdraw(id, amount);
+        if (user.isPresent()) {
+            return "Withdrew " + amount + " from user " + id + ":" + user.get().getName() + ". New balance: " + user.get().getBalance();
+        }
+        return "Insufficient funds or user not found!";
+    }
+
 }

@@ -1,18 +1,19 @@
 package com.example.minibank.service;
 
 import com.example.minibank.model.User;
+import com.example.minibank.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
 public class UserService {
-    private final Map<Long, User> userStorage = new HashMap<>();
     private Long currentId = 1L;
 
     // Retrieve all active users
     public List<User> getAllActiveUsers() {
         List<User> activeUsers = new ArrayList<>();
-        for (User user : userStorage.values()) {
+        // Access shared user data from UserRepository
+        for (User user : UserRepository.getAllUsers().values()) {
             if (user.isActive()) {
                 activeUsers.add(user);
             }
@@ -22,25 +23,25 @@ public class UserService {
 
     // Retrieve all users, including inactive ones
     public List<User> getAllUsers() {
-        return new ArrayList<>(userStorage.values());
+        return new ArrayList<>(UserRepository.getAllUsers().values());
     }
 
     // Add a new user
     public User saveUser(User user) {
         user.setId(currentId++);
         user.setActive(true);
-        userStorage.put(user.getId(), user);
+        UserRepository.addUser(user);
         return user;
     }
 
     // Get a user by ID
     public User getUserById(Long id) {
-        return userStorage.get(id);
+        return UserRepository.getUser(id);
     }
 
     // Delete a user
     public boolean deleteUser(Long id) {
-        User user = userStorage.get(id);
+        User user = UserRepository.getUser(id);
         if (user != null) {
             user.setActive(false);
             return true;
@@ -50,7 +51,7 @@ public class UserService {
 
     // Activate a user
     public boolean activateUser(Long id) {
-        User user = userStorage.get(id);
+        User user = UserRepository.getUser(id);
         if (user != null) {
             user.setActive(true);
             return true;

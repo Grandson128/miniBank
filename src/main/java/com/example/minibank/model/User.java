@@ -5,17 +5,19 @@ public class User {
     private String name;
     private String email;
     private boolean active;
+    private double balance;
 
     // Constructors
     public User() {
-        this.active = true; // Default status is active
+        this.active = true;
     }
 
-    public User(Long id, String name, String email) {
+    public User(Long id, String name, String email, double balance) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.active = true; // Default status is active
+        this.active = true;
+        this.balance = balance;
     }
 
     // Getters and Setters
@@ -30,4 +32,24 @@ public class User {
 
     public boolean isActive() { return active; }
     public void setActive(boolean active) { this.active = active; }
+
+    // Deposit money to account
+    public void deposit(double amount) {
+        if (amount > 0) {
+            this.balance += amount;
+        }
+    }
+
+    // Withdraw money from account
+    public boolean withdraw(double amount) {
+        if (amount > 0 && this.balance >= amount) {
+            this.balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
 }
