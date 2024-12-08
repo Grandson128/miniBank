@@ -1,5 +1,6 @@
 package com.example.minibank.controller;
 
+import com.example.minibank.model.Transaction;
 import com.example.minibank.model.User;
 import com.example.minibank.service.BankService;
 import com.example.minibank.service.UserService;
@@ -8,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.PriorityQueue;
 
 @RestController
 @RequestMapping("/api/users")
@@ -51,6 +54,26 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    // Get a user balance by user ID
+    @GetMapping("/{id}/balance")
+    public ResponseEntity<Double> getUserBalance(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user.getBalance());
+    }
+
+    // Get a user transactions by user ID
+    @GetMapping("/{id}/transactions")
+    public ResponseEntity<PriorityQueue<Transaction>> getUserTransactions(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user.getTransactions());
+    }
+
     // Delete a user by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
@@ -89,6 +112,17 @@ public class UserController {
             return "Withdrew " + amount + " from user " + id + ":" + user.get().getName() + ". New balance: " + user.get().getBalance();
         }
         return "Insufficient funds or user not found!";
+    }
+
+    // Endpoint for transfering money
+    @PatchMapping("/{fromId}/{toId}/transfer")
+    public String withdraw(@PathVariable Long fromId, @PathVariable Long toId, @RequestParam double amount) {
+
+        boolean transferResult = bankService.transfer(fromId, toId, amount);
+        if (transferResult) {
+            return "Transferred " + amount + " from user " + fromId + " to user " + toId;
+        }
+        return "Insufficient funds or users not found!";
     }
 
 }

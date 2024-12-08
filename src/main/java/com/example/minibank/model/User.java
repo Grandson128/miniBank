@@ -1,11 +1,15 @@
 package com.example.minibank.model;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 public class User {
     private Long id;
     private String name;
     private String email;
     private boolean active;
     private double balance;
+    private PriorityQueue<Transaction> transactions = new PriorityQueue<>(Comparator.comparing(Transaction::getTimestamp));
 
     // Constructors
     public User() {
@@ -51,5 +55,13 @@ public class User {
 
     public double getBalance() {
         return balance;
+    }
+
+    public void addTransaction(Transaction newTransaction){
+        transactions.add(newTransaction);
+    }
+
+    public PriorityQueue<Transaction> getTransactions() {
+        return transactions;
     }
 }

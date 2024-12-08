@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="257c31d0-96a7-4235-8e2b-8a902522f1a5" name="Changes" comment="Add user functionality">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/minibank/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/minibank/service/BankService.java" afterDir="false" />
+    <list default="true" id="257c31d0-96a7-4235-8e2b-8a902522f1a5" name="Changes" comment="Added deposit and withdraw operations. Added user shared memory.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/minibank/model/Transaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/minibank/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/minibank/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/minibank/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/minibank/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/minibank/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/minibank/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/minibank/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/minibank/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/minibank/service/BankService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/minibank/service/BankService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/minibank/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/minibank/Application.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
@@ -106,13 +107,22 @@
       <option name="project" value="LOCAL" />
       <updated>1733680449044</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added deposit and withdraw operations. Added user shared memory.">
+      <option name="closed" value="true" />
+      <created>1733682678965</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733682678965</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add git ignore" />
     <MESSAGE value="Add project template" />
     <MESSAGE value="Add user functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add user functionality" />
+    <MESSAGE value="Added deposit and withdraw operations. Added user shared memory." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added deposit and withdraw operations. Added user shared memory." />
   </component>
 </project>
