@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.PriorityQueue;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {

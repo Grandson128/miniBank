@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Bank API Client</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Mini Bank API Client</h1>
+
+<!-- Create User -->
+<!-- Section to Create a New User -->
+<h2>Create a New User</h2>
+<form id="createUserForm">
+    <label for="userName">Name:</label>
+    <input type="text" id="userName" name="userName" required><br>
+
+    <label for="userEmail">Email:</label>
+    <input type="email" id="userEmail" name="userEmail" required><br>
+
+    <label for="initialAmount">Initial Amount:</label>
+    <input type="number" step="0.01" id="initialAmount" name="initialAmount" required><br>
+
+    <button type="submit">Create User</button>
+</form>
+
+<div id="createUserResponse"></div>
+
+<!-- List Users -->
+<section>
+    <h2>List Users</h2>
+    <button onclick="listAllUsers()">List All Users</button>
+    <button onclick="listActiveUsers()">List Active Users</button>
+    <pre id="userListOutput"></pre>
+</section>
+
+<!-- Activate User -->
+<section>
+    <h2>Activate User</h2>
+    <input type="number" id="activateUserId" placeholder="User ID">
+    <button onclick="activateUser()">Activate User</button>
+</section>
+
+<!-- Deactivate User -->
+<section>
+    <h2>Deactivate User</h2>
+    <input type="number" id="deactivateUserId" placeholder="User ID">
+    <button onclick="deactivateUser()">Deactivate User</button>
+</section>
+
+
+<!-- Deposit Money -->
+<section>
+    <h2>Deposit Money</h2>
+    <input type="number" id="depositUserId" placeholder="User ID">
+    <input type="number" id="depositAmount" placeholder="Amount">
+    <button onclick="depositMoney()">Deposit</button>
+</section>
+
+<!-- Withdraw Money -->
+<section>
+    <h2>Withdraw Money</h2>
+    <input type="number" id="withdrawUserId" placeholder="User ID">
+    <input type="number" id="withdrawAmount" placeholder="Amount">
+    <button onclick="withdrawMoney()">Withdraw</button>
+</section>
+
+<!-- Transfer Money -->
+<section>
+    <h2>Transfer Money</h2>
+    <input type="number" id="fromUserId" placeholder="From User ID">
+    <input type="number" id="toUserId" placeholder="To User ID">
+    <input type="number" id="transferAmount" placeholder="Amount">
+    <button onclick="transferMoney()">Transfer</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
